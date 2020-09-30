@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h2>Categories</h2>
+    <ul>
+        {% for category in object_list %}
+            <li><h3>{{ category.name }}</h3></li>
+            <ul>
+                {% for subcategory in category.subcategory.all %}
+                    <li><h3><a href="{% url 'subcategory_detail' subcategory.slug %}">{{ subcategory.name }}
+                        - {{ subcategory.product.count }}</h3>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+{% endblock %}

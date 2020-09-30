@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{{ request.session }}
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="{{ product.image.url }}" height="500px">
+                </div>
+                <div class="col-md-7">
+                    <h3 class="card-title">{{ product.name }}</h3>
+                    <h5>{{ product.price }} ₸</h5>
+                    <p class="card-text">
+                        {{ product.description|safe }}
+                    </p>
+                    <a href="{% url 'cart_add' product.id %}" class="btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+
+
+        </div>
+
+{% endblock %}

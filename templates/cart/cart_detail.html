@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+{% block content %}
+    <table class="table">
+        <tr>
+            <td>Name</td>
+            <td>Image</td>
+            <td>Price (₸)</td>
+            <td>Quantity</td>
+            <td>Total Price</td>
+        </tr>
+        {% for key,value in request.session.cart.items %}
+            <tr>
+                <td><a href="">{{ value.name }}</a></td>
+                <td><img src="{{ value.image }}" alt="" height="200px"></td>
+                <td>{{ value.price }} ₸</td>
+                <td><a href="{% url 'item_increment' value.product_id %}"
+                       class="btn btn-primary">+</a> {{ value.quantity }} <a
+                        href="{% url 'item_decrement' value.product_id %}" class="btn btn-danger">-</a></td>
+            <td>{{ value.price|mul:value.quantity }} ₸</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    <a href="{% url 'cart_clear' %}" class="btn btn-danger">Clear Cart</a>
+    <h3>Total: {{ total_price }} ₸</h3>
+
+{% endblock %}

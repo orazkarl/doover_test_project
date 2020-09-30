@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h2>{{ object.name }}</h2>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-3 ">
+                <div class="card">
+                    <div class="card-header" style=" overflow: hidden; height: 300px">
+                        <img src="{{ product.image.url }}" height="250px">
+                    </div>
+                    <div class="card-body" >
+                        <h5 class="card-title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h5>
+                        <p class="card-text">
+                            Цена: {{ product.price }} ₸
+                        </p>
+                        <p class="card-text">
+
+                            {{ product.short_description }}
+                        </p>
+{#                        <a href="{% url 'product_detail' product.slug %}" class="btn btn-primary">More</a>#}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
