@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+{% block content %}
+    <h1>My Orders</h1>
+    <table class="table">
+        <tr>
+            <td></td>
+            <td>Status</td>
+            <td>Total Price</td>
+        </tr>
+        {% for order in object_list %}
+            <tr>
+                <td>
+                    <table>
+                        {% for order_item in order.items.all %}
+                            <tr>
+                                <td>{{ order_item.product }}</td>
+                                <td>{{ order_item.quantity }}</td>
+                                <td>{{ order_item.price }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td>{{ order.status }} </td>
+                <td>{{ order.get_total_cost }} ₸</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

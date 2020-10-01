@@ -3,6 +3,7 @@
 {% load mathfilters %}
 
 {% block content %}
+    <h1>Cart</h1>
     <table class="table">
         <tr>
             <td>Name</td>
@@ -26,5 +27,6 @@
     </table>
     <a href="{% url 'cart_clear' %}" class="btn btn-danger">Clear Cart</a>
     <h3>Total: {{ total_price }} ₸</h3>
+    <a href="{% url 'order_checkout' %}" class="btn btn-primary">Order</a>
 
 {% endblock %}

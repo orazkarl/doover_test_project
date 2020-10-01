@@ -1,21 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <h2>Products</h2>
-    <table class="table">
-        <tr>
-            <td>Name</td>
-            <td>Image</td>
-            <td>Price (₸)</td>
-        </tr>
+    <h2>Latest Products</h2>
+    <div class="row">
         {% for product in object_list %}
-            <tr>
-                <td><a href="">{{ product.name }}</a></td>
-
-                <td><img src="{{ product.image.url }}" alt="" height="200px"></td>
-                <td>{{ product.price }} ₸</td>
-            </tr>
+            <div class="col-md-3 ">
+                <div class="card">
+                    <div class="card-header" style=" overflow: hidden; height: 300px">
+                        <img src="{{ product.image.url }}" height="250px">
+                    </div>
+                    <div class="card-body" >
+                        <h5 class="card-title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h5>
+                        <p class="card-text">
+                            Цена: {{ product.price }} ₸
+                        </p>
+                        <p class="card-text">
+                            {{ product.short_description }}
+                        </p>
+                        <a href="{% url 'cart_add' product.id %}" class="btn btn-primary">Add to card</a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-    </table>
-    <br>
+    </div>
+
 {% endblock %}
